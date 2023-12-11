@@ -251,17 +251,17 @@ if (! empty($entity_oids)) {
                     // End grouping sensors
                 }
 
-                if ($device['os'] === 'xos') and (in_array($index, $xos_sensor_limit)) {
-                    if (in_array('etsysEntitySfpSensorLowAlarm', $xos_sensor_limit[$index]) {
+                if (($device['os'] === 'xos') and (in_array($index, $xos_sensor_limit))) {
+                    if (in_array('etsysEntitySfpSensorLowAlarm', $xos_sensor_limit[$index])) {
                         $low_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorLowAlarm'] / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorLowWarning', $xos_sensor_limit[$index]) {
+                    if (in_array('etsysEntitySfpSensorLowWarning', $xos_sensor_limit[$index])) {
                         $low_warn_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorLowWarning'] / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorHighWarning', $xos_sensor_limit[$index]) {
+                    if (in_array('etsysEntitySfpSensorHighWarning', $xos_sensor_limit[$index])) {
                         $warn_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorHighWarning'] / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorHighAlarm', $xos_sensor_limit[$index]) {
+                    if (in_array('etsysEntitySfpSensorHighAlarm', $xos_sensor_limit[$index])) {
                         $high_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorHighAlarm'] / $divisor;
                     }
                 }
