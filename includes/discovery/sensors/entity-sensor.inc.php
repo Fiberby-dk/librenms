@@ -251,20 +251,32 @@ if (! empty($entity_oids)) {
                     // End grouping sensors
                 }
 
-                if (($device['os'] === 'xos') and (in_array($index, $xos_sensor_limit))) {
-                    if (in_array('etsysEntitySfpSensorLowAlarm', $xos_sensor_limit[$index])) {
-                        $low_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorLowAlarm'] / $divisor;
+                echo "\n";
+                if (($device['os'] === 'xos') and (in_array($index, array_keys($xos_sensor_limit)))) {
+                    if (isset($xos_sensor_limit[$index]['etsysEntitySfpSensorLowAlarm'])) {
+                        $low_limit = ((float)$xos_sensor_limit[$index]['etsysEntitySfpSensorLowAlarm']) / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorLowWarning', $xos_sensor_limit[$index])) {
-                        $low_warn_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorLowWarning'] / $divisor;
+                    if (isset($xos_sensor_limit[$index]['etsysEntitySfpSensorLowWarning'])) {
+                        $low_warn_limit = ((float)$xos_sensor_limit[$index]['etsysEntitySfpSensorLowWarning']) / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorHighWarning', $xos_sensor_limit[$index])) {
-                        $warn_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorHighWarning'] / $divisor;
+                    if (isset($xos_sensor_limit[$index]['etsysEntitySfpSensorHighWarning'])) {
+                        $warn_limit = ((float)$xos_sensor_limit[$index]['etsysEntitySfpSensorHighWarning']) / $divisor;
                     }
-                    if (in_array('etsysEntitySfpSensorHighAlarm', $xos_sensor_limit[$index])) {
-                        $high_limit = $xos_sensor_limit[$index]['etsysEntitySfpSensorHighAlarm'] / $divisor;
+                    if (isset($xos_sensor_limit[$index]['etsysEntitySfpSensorHighAlarm'])) {
+                        $high_limit = ((float)$xos_sensor_limit[$index]['etsysEntitySfpSensorHighAlarm']) / $divisor;
                     }
+                    echo "\nAdded xos limits";
+                    echo "\n";
+                    var_export($xos_sensor_limit[$index]);
+                    echo "\n";
+
                 }
+                echo "\nlow_limit "; var_dump($low_limit);
+                echo "\nhigh_limit "; var_dump($high_limit);
+                echo "\nlow_warn_limit "; var_dump($low_warn_limitl);
+                echo "\nwarn_limit "; var_dump($warn_limit);
+                echo "\n";
+
 
                 $descr = trim($descr);
                 discover_sensor($valid['sensor'], $type, $device, $oid, $index, 'entity-sensor', $descr, $divisor, $multiplier, $low_limit, $low_warn_limit, $warn_limit, $high_limit, $current, 'snmp', $entPhysicalIndex, $entry['entSensorMeasuredEntity'] ?? null, null, $group);
